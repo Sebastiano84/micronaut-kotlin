@@ -1,0 +1,45 @@
+version: '3.3'
+
+services:
+  linux:
+    container_name: linux
+    image: alpine
+    command: sh
+    stdin_open: true
+    tty: true
+
+  db:
+    container_name: my_postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    expose:
+      - "5432"
+    environment:
+      POSTGRES_USER: example
+      POSTGRES_PASSWORD: example
+    build:
+      context: ./postgres
+
+  adminer:
+    image: adminer
+    restart: on-failure
+    ports:
+      - "8888:8888"
+    expose:
+      - "8888"
+  
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: on-failure
+    container_name: pgadmin
+    ports:
+      - "80:80"
+    expose:
+      - "80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: sebastiano.fresta@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: example
+
+volumes:
+  data:

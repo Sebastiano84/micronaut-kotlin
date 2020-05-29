@@ -1,0 +1,46 @@
+---
+micronaut:
+  application:
+    name: no-name
+
+---
+datasources:
+  default:
+    url: jdbc:postgresql://192.168.99.100:5432/example
+#    driverClassName: org.h2.Driver
+    username: example
+    password: example
+  test:
+    url: jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
+    driverClassName: org.h2.Driver
+    username: sa
+    password: ''    
+jpa:
+  default:
+#    entity-scan:
+#      packages:
+#        - 'example.micronaut.db.entity'
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        hbm2ddl:
+          auto: update
+        show_sql: true
+
+
+---
+postgres:
+  reactive:
+    client:
+      port: 5432
+      host: localhost
+      database: no-name
+#      user: user
+#      password: password
+#      maxSize: 5
+
+
+endpoints:
+  info:
+    enabled: true
+    sensitive: false
