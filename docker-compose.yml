@@ -8,6 +8,17 @@ services:
     stdin_open: true
     tty: true
 
+  service:
+    container_name: test-service
+    restart: always
+    ports:
+      - "8080:8080"
+    expose:
+      - "8080"
+    build:
+      context: ./
+
+
   db:
     container_name: my_postgres
     restart: always

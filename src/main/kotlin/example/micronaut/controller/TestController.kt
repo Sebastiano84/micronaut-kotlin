@@ -8,7 +8,7 @@ import io.micronaut.http.annotation.Get
 import io.micronaut.http.annotation.Post
 import io.micronaut.http.annotation.Produces
 
-@Controller("/toRemove")
+@Controller("/test")
 class TestController(val testRepository: TestRepository) {
 
     @Get("/")
