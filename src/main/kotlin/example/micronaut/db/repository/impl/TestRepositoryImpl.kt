@@ -4,6 +4,7 @@ import example.micronaut.db.entity.Test
 import example.micronaut.db.repository.TestRepository
 import io.micronaut.configuration.hibernate.jpa.scope.CurrentSession
 import io.micronaut.spring.tx.annotation.Transactional
+import java.util.*
 import javax.inject.Singleton
 import javax.persistence.EntityManager
 import javax.persistence.PersistenceContext
@@ -18,5 +19,10 @@ open class TestRepositoryImpl(@param:CurrentSession @field:PersistenceContext va
     @Transactional
     override fun save(name: @NotBlank String) {
         return entityManager.persist(Test(name))
+    }
+
+    @Transactional
+    override fun deleteAll(): List<Object> {
+        return entityManager.createQuery("delete FROM Test d where 1=1").resultList as List<Object>
     }
 }

@@ -6,4 +6,6 @@ import javax.validation.constraints.NotNull
 interface TestRepository {
     fun save(@NotNull name: String)
     fun findAll(): List<Test>
+
+    fun deleteAll(): List<Object>
 }
